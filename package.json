@@ -25,10 +25,17 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "admin-lte": "^2.4.8",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
+    "font-awesome": "^4.7.0",
+    "intl": "^1.2.5",
+    "jquery": "^3.3.1",
     "path": "^0.12.7",
+    "reflect-metadata": "^0.1.12",
     "rxjs": "^6.0.0",
+    "ts-helpers": "^1.1.2",
+    "webdriver-manager": "^12.1.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
