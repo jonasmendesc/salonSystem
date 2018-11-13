@@ -11,8 +11,9 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
-    RouterModule
+    HttpModule
+    // Se minhas rotas estiveram em modelo raiz, senão usar forChildren
+    //RouterModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
