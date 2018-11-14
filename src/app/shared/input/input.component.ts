@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { InputModel } from './input.model';
 
 @Component({
   selector: 'slsys-input',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class InputComponent implements OnInit {
 
   constructor() { }
+
+  @Input() input: InputModel; 
 
   ngOnInit() {
   }
