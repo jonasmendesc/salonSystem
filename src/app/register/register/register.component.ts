@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InputModel } from '../../shared/input/input.model';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'slsys-register',
@@ -7,14 +7,34 @@ import { InputModel } from '../../shared/input/input.model';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  registerForm : FormGroup;
 
-  inputs: InputModel [] = [{ type: "text", placeHolder: "Nome da empresa", spanClasse: "glyphicon glyphicon-user form-control-feedback" }, 
-  						   { type: "email", placeHolder: "Email", spanClasse: "glyphicon glyphicon-envelope form-control-feedback" },
-  						   { type: "password", placeHolder: "Senha", spanClasse: "glyphicon glyphicon-lock form-control-feedback" },
-  						   { type: "password", placeHolder: "Confirmar Senha", spanClasse: "glyphicon glyphicon-log-in form-control-feedback" }]
+  emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+
+  	this.registerForm = this.formBuilder.group({
+  		companyName: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
+  		email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
+  		password: this.formBuilder.control('', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]),
+  		passwordConfirmation : this.formBuilder.control('', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]) 
+
+  	})
+
+  }
+
+  static equalsto(group: AbstractControl) : { [key: string] : boolean }{
+  	const password = group.get('password');
+  	const passwordConfirmation = group.get('passwordConfirmation');
+  	if(!password || !passwordConfirmation){
+      return undefined
+    }
+    if(password.value !== passwordConfirmation.value){
+      return {passwordNotMatch:true}
+    }
+    return undefined
   }
 
 }

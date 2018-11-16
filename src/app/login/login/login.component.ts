@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InputModel } from '../../shared/input/input.model';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'slsys-login',
@@ -7,13 +7,18 @@ import { InputModel } from '../../shared/input/input.model';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm: FormGroup;
 
+  emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-  inputs: InputModel [] = [{ type: "email", placeHolder: "Email", spanClasse: "glyphicon glyphicon-envelope form-control-feedback" }, 
-  						   { type: "password", placeHolder: "Password", spanClasse: "glyphicon glyphicon-lock form-control-feedback" }]
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+
+  	this.loginForm = this.formBuilder.group({ 
+  		email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
+  		password: this.formBuilder.control('', [Validators.required, Validators.minLength(5), Validators.maxLength(12)])
+  	})
 
   }
 

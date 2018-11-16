@@ -14,7 +14,6 @@ import { InstitucionalComponent } from './institucional/institucional.component'
   imports: [
     BrowserModule,
     HttpModule,
-    // Se minhas rotas estiveram em modelo raiz, senão usar forChildren
     RouterModule.forRoot(ROUTES)
   ],
   providers: [],

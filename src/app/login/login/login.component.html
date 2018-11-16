@@ -6,16 +6,24 @@
   <div class="login-box-body">
     <p class="login-box-msg">Entre com seu email e senha</p>
 
-    <form action="#" method="post">
+    <form [formGroup]="loginForm" novalidate>
       
-      <slsys-input *ngFor="let input of inputs" [input]="input"></slsys-input>
+     <slsys-input errorMessage="Email invalido">
+        <input type="email" class="form-control" formControlName="email" placeholder="E-mail"> 
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </slsys-input>
+
+      <slsys-input errorMessage="Senha deve ter entre 5 a 10 caracteres">
+        <input type="password" class="form-control" formControlName="password" placeholder="Digitar senha"> 
+         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </slsys-input> 
 
       <div class="row">
         <div class="col-xs-8">
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+          <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
         </div>
         <!-- /.col -->
       </div>
